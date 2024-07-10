@@ -40,6 +40,10 @@ TrustedCustomerZone_node = glueContext.write_dynamic_frame.from_options(
     connection_options={
         "path": "s3://dend-lake-house/customer/trusted/",
         "partitionKeys": [],
+        "enableUpdateCatalog": True,
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "catalogDatabase": "dend",
+        "catalogTableName": "customer_trusted"
     },
     transformation_ctx="TrustedCustomerZone_node",
 )

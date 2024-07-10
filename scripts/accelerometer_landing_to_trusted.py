@@ -61,6 +61,10 @@ S3bucket_node3 = glueContext.write_dynamic_frame.from_options(
     connection_options={
         "path": "s3://dend-lake-house/accelerometer/trusted/",
         "partitionKeys": [],
+        "enableUpdateCatalog": True,
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "catalogDatabase": "dend",
+        "catalogTableName": "accelerometer_trusted"
     },
     transformation_ctx="S3bucket_node3",
 )

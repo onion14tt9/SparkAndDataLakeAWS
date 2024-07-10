@@ -86,6 +86,10 @@ StepTrainerTrusted_node = glueContext.write_dynamic_frame.from_options(
     connection_options={
         "path": "s3://dend-lake-house/step-trainer/trusted/",
         "partitionKeys": [],
+        "enableUpdateCatalog": True,
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "catalogDatabase": "dend",
+        "catalogTableName": "step_trainer_trusted"
     },
     transformation_ctx="StepTrainerTrusted_node",
 )

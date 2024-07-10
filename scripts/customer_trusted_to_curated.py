@@ -5,6 +5,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
 
+
 args = getResolvedOptions(sys.argv, ["JOB_NAME"])
 sc = SparkContext()
 glueContext = GlueContext(sc)
@@ -42,6 +43,7 @@ DropFields_node = DropFields.apply(
     transformation_ctx="DropFields_node",
 )
 
+
 # Script generated for node S3 bucket
 S3bucket_node3 = glueContext.write_dynamic_frame.from_options(
     frame=DropFields_node,
@@ -50,6 +52,10 @@ S3bucket_node3 = glueContext.write_dynamic_frame.from_options(
     connection_options={
         "path": "s3://dend-lake-house/customer/curated/",
         "partitionKeys": [],
+        "enableUpdateCatalog": True,
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "catalogDatabase": "dend",
+        "catalogTableName": "customer_curated"
     },
     transformation_ctx="S3bucket_node3",
 )

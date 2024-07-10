@@ -65,8 +65,13 @@ DropFields_node.show(5)
 #Script generated for node Machine Learning Curated
 MachineLearningCurated_node = glueContext.write_dynamic_frame.from_catalog(
     frame=DropFields_node,
+    connection_type="s3",
+    path =  "s3://dend-lake-house/step-trainer/curated/",
     database="dend",
     table_name="machine_learning_curated",
+    updateBehavior = "UPDATE_IN_DATABASE",
+    partitionkeys = [],
+    enableUpdateCatalog = True,
     transformation_ctx="MachineLearningCurated_node",
 )
 
